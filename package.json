@@ -1,0 +1,17 @@
+{
+  "name": "wheather_app",
+  "version": "1.0.0",
+  "description": "\u001b[3;5~This project is a user-friendly weather dashboard created using Express and Node.js on the server-side, and EJS along with CSS for the client-side rendering. It utilizes the Axios HTTP client to interact with a public weather API, enabling users to retrieve and view real-time weather data for any location globally. The dashboard displays weather conditions, temperature, humidity, wind speed, and other relevant weather information in an easy-to-understand format. The project aims at demonstrating a practical understanding of integrating public APIs into web projects, server-side programming with Express/Node.js, client-server communication using Axios, and data manipulation and presentation",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Manuel Vera",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+        <%- include("partials/header.ejs")%>
+
+        <section class="main-section">
+            <div class="main-welcome-title">
+                <h1>Welcome user to the weather app</h1>
+                <h2>SkySight</h2>
+            </div>
+            <% if (Object.keys(weatherData).length > 0) { %>
+                <div class="data-box">
+                    <h2>Weather in <span id="location-name"><%= weatherData['location']['name'] %>, <%= weatherData['location']['region'] %>, <%= weatherData['location']['country'] %></span></h2>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <span class="label">Temperature:</span>
+                            <span class="value" id="temperature"><%= weatherData['current']['temp_c'] %>°C (<%= weatherData['current']['temp_f'] %>°F)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Condition:</span>
+                            <span class="value" id="condition">
+                <%= weatherData['current']['condition']['text'] %>
+                <img src="<%= weatherData['current']['condition']['icon'] %>" alt="<%= weatherData['current']['condition']['text'] %>">
+                </span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Wind Speed:</span>
+                            <span class="value" id="wind-speed"><%= weatherData['current']['wind_mph'] %> mph (<%= weatherData['current']['wind_kph'] %> kph)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Wind Direction:</span>
+                            <span class="value" id="wind-direction"><%= weatherData['current']['wind_degree'] %>° <%= weatherData['current']['wind_dir'] %></span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Pressure:</span>
+                            <span class="value" id="pressure"><%= weatherData['current']['pressure_mb'] %> mb (<%= weatherData['current']['pressure_in'] %> in)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Precipitation:</span>
+                            <span class="value" id="precipitation"><%= weatherData['current']['precip_mm'] %> mm (<%= weatherData['current']['precip_in'] %> in)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Humidity:</span>
+                            <span class="value" id="humidity"><%= weatherData['current']['humidity'] %>%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Cloud Cover:</span>
+                            <span class="value" id="cloud-cover"><%= weatherData['current']['cloud'] %>%</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Feels Like:</span>
+                            <span class="value" id="feels-like"><%= weatherData['current']['feelslike_c'] %>°C (<%= weatherData['current']['feelslike_f'] %>°F)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Visibility:</span>
+                            <span class="value" id="visibility"><%= weatherData['current']['vis_km'] %> km (<%= weatherData['current']['vis_miles'] %> miles)</span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">UV Index:</span>
+                            <span class="value" id="uv-index"><%= weatherData['current']['uv'] %></span>
+                        </div>
+                        <div class="weather-detail">
+                            <span class="label">Wind Gust:</span>
+                            <span class="value" id="wind-gust"><%= weatherData['current']['gust_mph'] %> mph (<%= weatherData['current']['gust_kph'] %> kph)</span>
+                        </div>
+                    </div>
+                </div>
+            <%} else if (Object.keys(errorMessage).length > 0) {%>
+                <div class="data-box">
+                    <h1><%= errorMessage['error']%></h1>
+                </div>
+
+            <%} else {%>
+                <div class="data-box">
+                    <h1>search for temperatures around the US or around the world down below. 👇</h1>
+                </div>
+            <%}%>
+
+                <form action="/temp-data" method="post" class="data-form">
+                    <input type="text" name="newTemp" placeholder="Search for a City!" autocomplete="on">
+                    <button type="submit" name="add" aria-label="Search for Weather">ADD!</button>
+                </form>
+        </section>
+        <%- include("partials/footer.ejs")%>
+        <script src="/js/script.js"></script>
+</body>
+</html>
+
+
+
